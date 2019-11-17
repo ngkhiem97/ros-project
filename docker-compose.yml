@@ -7,7 +7,6 @@ services:
     image: jguyomard/laravel-php:7.3
     volumes:
       - ./code/:/var/www/
-      - $HOME/.composer/:$HOME/.composer/
     environment:
       - "DB_HOST=mysql"
       - "DB_DATABASE=homestead"
@@ -39,30 +38,13 @@ services:
       - "MYSQL_DATABASE=homestead"
       - "MYSQL_USER=homestead"
       - "MYSQL_PASSWORD=homestead"
-#    ports:
-#        - "3306:3306"
-
-#  pgsql:
-#    image: postgres:9.6-alpine
-#    volumes:
-#      - pgsqldata:/var/lib/postgresql/data
-#    environment:
-#      - "POSTGRES_DB=homestead"
-#      - "POSTGRES_USER=homestead"
-#      - "POSTGRES_PASSWORD=homestead"
-#    ports:
-#        - "5432:5432"
+    ports:
+        - "3306:3306"
 
   redis:
     container_name: redis
     network_mode: bridge
     image: redis:4.0-alpine
     command: redis-server --appendonly yes
-#    ports:
-#        - "6379:6379"
-
-#  elastic:
-#    image: elasticsearch:5.5-alpine
-#    ports:
-#        - "9200:9200"
-
+    ports:
+        - "6379:6379"
