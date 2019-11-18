@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('users', 'UsersController@getAllUsers');
+Route::get('users/{id}', 'UsersController@getUser');
+Route::post('users', 'UsersController@createuser');
+Route::put('users/{id}', 'UsersController@updateUser');
+Route::delete('users/{id}','UsersController@deleteUser');
