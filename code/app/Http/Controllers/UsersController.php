@@ -72,10 +72,11 @@ class UsersController extends Controller
     public function deleteUser($id)
     {
         if (User::where('id', $id)->exists()) {
-            User::delete($id);
+            $user = User::find($id);
+            $user->delete();
             return response()->json([
                 "message" => "User deleted"
-            ], 200);
+            ], 204);
         } else {
             return response()->json([
                 "message" => "User not found"
