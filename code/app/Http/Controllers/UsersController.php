@@ -7,32 +7,16 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth:api', 'admin']);
+    }
+
     public function getAllUsers()
     {
         return User::all();
     }
 
-    public function createUser(Request $request)
-    {
-        if (User::where('email', $request->email)->exists()) {
-            return response()->json([
-                "message" => "User already exist"
-            ], 412);
-        }
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = md5($request->password);
-        if ($user->save()) {
-            return response()->json([
-                "message" => "Record created"
-            ], 201);
-        } else {
-            return response()->json([
-                "message" => "Failed to create record"
-            ], 412);
-        }
-    }
 
     public function getUser($id)
     {
