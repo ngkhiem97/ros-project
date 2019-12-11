@@ -6,7 +6,7 @@ services:
     container_name: php
     image: jguyomard/laravel-php:7.3
     volumes:
-      - ./ttb-service-account/:/var/www/
+      - ./src/:/var/www/
     environment:
       - "DB_HOST=mysql"
       - "DB_DATABASE=homestead"
