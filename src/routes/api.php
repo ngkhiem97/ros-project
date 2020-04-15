@@ -17,9 +17,10 @@ use Illuminate\Http\Request;
 //Authentication
 Route::post('/register', 'AuthController@register');
 Route::post('/login', 'AuthController@login');
-Route::post('/logout', 'AuthController@logout');
+Route::post('/logout', 'AuthController@logout')->middleware(['auth:api', 'admin']);
 
 //User
+Route::get('check', 'UsersController@check');
 Route::get('users', 'UsersController@getAllUsers');
 Route::get('users/{id}', 'UsersController@getUser');
 Route::put('users/{id}', 'UsersController@updateUser');
