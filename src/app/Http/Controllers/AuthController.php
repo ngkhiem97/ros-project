@@ -9,11 +9,6 @@ use App\Enums\UserType;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['cors']);
-    }
-
     public function register(Request $request)
     {
         if (User::where('email', $request->email)->exists()) {
