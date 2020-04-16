@@ -10,6 +10,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
+use App\Http\Middleware\Cors;
 use Barryvdh\Cors\HandleCors;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
@@ -62,14 +63,14 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
+            'cors',
             'throttle:60,1',
             'bindings',
-            'cors'
         ],
     ];
 
     /**
-     * The application's route middleware.
+     * The application's route middleware
      *
      * These middleware may be assigned to groups or used individually.
      *
@@ -87,7 +88,7 @@ class Kernel extends HttpKernel
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'admin' => AdminMiddleware::class,
-        'cors' => 'App\Http\Middleware\CORS',
+        'cors' => Cors::class,
     ];
 
     /**
