@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['auth:api', 'admin']);
+    }
+
+    public function check()
+    {
+        return Auth::user();
     }
 
     public function getAllUsers()
