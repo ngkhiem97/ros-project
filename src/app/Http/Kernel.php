@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            'cors'
         ],
     ];
 
@@ -86,6 +87,7 @@ class Kernel extends HttpKernel
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
         'admin' => AdminMiddleware::class,
+        'cors' => 'App\Http\Middleware\CORS',
     ];
 
     /**
